@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace PaperTank
 {
@@ -18,9 +19,6 @@ namespace PaperTank
 
         private void Update()
         {
-            _horizontal = Input.GetAxis("Horizontal");
-            _vertical = Input.GetAxis("Vertical");
-
             if (_horizontal < 0) _playerSprite.flipX = true;
             if (_horizontal > 0) _playerSprite.flipX = false;
         }
@@ -31,6 +29,14 @@ namespace PaperTank
             var verticalMove = _vertical * _moveSpeed;
 
             _rigidbody.velocity = new Vector3(horizontalMove, _rigidbody.velocity.y, verticalMove);
+        }
+
+        public void OnMove(InputAction.CallbackContext context)
+        {
+            var input = context.ReadValue<Vector2>();
+
+            _horizontal = input.x;
+            _vertical = input.y;
         }
     }
 }
