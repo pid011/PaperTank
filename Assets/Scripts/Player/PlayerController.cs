@@ -3,10 +3,11 @@ using UnityEngine.InputSystem;
 
 namespace PaperTank
 {
-    public class PlayerMove : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float _moveSpeed;
         [SerializeField] private SpriteRenderer _playerSprite;
+        [SerializeField] private TurretController _turret;
 
         private Rigidbody _rigidbody;
         private float _horizontal;
@@ -19,8 +20,12 @@ namespace PaperTank
 
         private void Update()
         {
-            if (_horizontal < 0) _playerSprite.flipX = true;
-            if (_horizontal > 0) _playerSprite.flipX = false;
+            // flip by player movement
+            //if (_horizontal < 0) _playerSprite.flipX = true;
+            //if (_horizontal > 0) _playerSprite.flipX = false;
+
+            // flip by turret rotate
+            _playerSprite.flipX = 180 <= _turret.TurretRotate.y && _turret.TurretRotate.y < 360;
         }
 
         private void FixedUpdate()
