@@ -7,7 +7,7 @@ namespace PaperTank
     {
         [SerializeField] private float _moveSpeed;
         [SerializeField] private SpriteRenderer _playerSprite;
-        [SerializeField] private TurretController _turret;
+        [SerializeField] private TurretRotator _turret;
 
         private Rigidbody _rigidbody;
         private float _horizontal;
@@ -20,12 +20,7 @@ namespace PaperTank
 
         private void Update()
         {
-            // flip by player movement
-            //if (_horizontal < 0) _playerSprite.flipX = true;
-            //if (_horizontal > 0) _playerSprite.flipX = false;
-
-            // flip by turret rotate
-            _playerSprite.flipX = 180 <= _turret.TurretRotate.y && _turret.TurretRotate.y < 360;
+            FlipSprite();
         }
 
         private void FixedUpdate()
@@ -42,6 +37,16 @@ namespace PaperTank
 
             _horizontal = input.x;
             _vertical = input.y;
+        }
+
+        private void FlipSprite()
+        {
+            // flip by player movement
+            //if (_horizontal < 0) _playerSprite.flipX = true;
+            //if (_horizontal > 0) _playerSprite.flipX = false;
+
+            // flip by turret rotate
+            _playerSprite.flipX = 180 <= _turret.TurretRotate.y && _turret.TurretRotate.y < 360;
         }
     }
 }

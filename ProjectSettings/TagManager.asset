@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Tank
   - Floor
+  - Projectile
+  - Hit
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - UI
   - 2D Object
   - 3D Object
-  - 
+  - Floor
   - 
   - 
   - 
