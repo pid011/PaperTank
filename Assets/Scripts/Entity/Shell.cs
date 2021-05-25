@@ -11,15 +11,14 @@ namespace PaperTank
         }
 
         [SerializeField] private GameObject _explosion;
-        [SerializeField] private float _minDistance = 10f;
 
         public MovementType ShellMovement { get; set; }
         public float Speed { get; set; }
         public Vector3 EndPoint { get; set; }
-        public float ParabolaHeight { get; set; } = 4f;
+        public float ParabolaHeight { get; set; } = 1f;
+        public string TagToDoNotCollide { get; set; }
 
         private Rigidbody _rigidbody;
-        private Vector3 _startPos;
         private Vector3 _previousPos;
 
         private void Awake()
@@ -29,7 +28,6 @@ namespace PaperTank
 
         private void Start()
         {
-            _startPos = transform.position;
             _rigidbody.useGravity = false;
 
             switch (ShellMovement)
@@ -60,19 +58,19 @@ namespace PaperTank
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player")) return;
+            if (!string.IsNullOrWhiteSpace(TagToDoNotCollide) && other.gameObject.CompareTag(TagToDoNotCollide))
+            {
+                return;
+            }
+
             Explosion();
         }
 
         private IEnumerator StraightMove()
         {
-            var waitForFixedUpdate = new WaitForFixedUpdate();
             _rigidbody.AddRelativeForce(Vector3.forward * Speed, ForceMode.Impulse);
 
-            while (Vector3.Distance(_startPos, transform.position) <= _minDistance)
-            {
-                yield return waitForFixedUpdate;
-            }
+            yield return new WaitForSeconds(3f);
             Explosion();
         }
 

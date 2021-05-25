@@ -10,6 +10,8 @@ namespace PaperTank
         {
             var waitForFixedUpdate = new WaitForFixedUpdate();
 
+            height += start.y < end.y ? end.y : start.y;
+
             float elapsedTime = 0f;
 
             float gravity = Mathf.Abs(Physics.gravity.y);
@@ -40,6 +42,8 @@ namespace PaperTank
         public static IReadOnlyList<Vector3> SimulateParabolaMove(Vector3 start, Vector3 end, float height)
         {
             List<Vector3> points = new List<Vector3>();
+
+            height += start.y < end.y ? end.y : start.y;
 
             float elapsedTime = 0f;
 

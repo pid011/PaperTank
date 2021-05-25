@@ -8,6 +8,7 @@ TagManager:
   - Floor
   - Projectile
   - Hit
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 3D Object
   - Floor
   - Level
-  - 
+  - Behaviour
   - 
   - 
   - 
