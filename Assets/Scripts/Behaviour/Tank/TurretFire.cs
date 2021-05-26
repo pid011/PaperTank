@@ -19,7 +19,7 @@ namespace PaperTank
         /// 포탄 발사
         /// </summary>
         /// <param name="tagToDoNotCollide">콜라이더에 부딪히면 안되는 태그 (Player, Enemy, ...)</param>
-        /// <returns></returns>
+        /// <returns>발사된 포탄 오브젝트</returns>
         public Shell Fire(string tagToDoNotCollide)
         {
             var initPos = transform.position + Vector3.up * 0.2f;

@@ -12,13 +12,13 @@ namespace PaperTank
 
         protected override IEnumerator OnEnter()
         {
-            Debug.Log("FindPlayer: OnEnter");
+            // Debug.Log("FindPlayer: OnEnter");
             yield break;
         }
 
         protected override IEnumerator OnExecute()
         {
-            Debug.Log("FindPlayer: OnExecute");
+            // Debug.Log("FindPlayer: OnExecute");
             var wait = new WaitForFixedUpdate();
 
             while (true)
@@ -41,7 +41,7 @@ namespace PaperTank
 
         protected override IEnumerator OnExit()
         {
-            Debug.Log("FindPlayer: OnExit");
+            // Debug.Log("FindPlayer: OnExit");
             yield break;
         }
 

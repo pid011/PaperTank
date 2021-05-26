@@ -2,16 +2,19 @@
 
 namespace PaperTank
 {
+    [RequireComponent(typeof(SpriteRenderer))]
     public class TankBehaviour : MonoBehaviour
     {
-        [SerializeField] private SpriteRenderer _tankSprite;
         [SerializeField] private Turret _turret;
 
         public SpriteRenderer TankSprite => _tankSprite;
         public Turret Turret => _turret;
 
+        private SpriteRenderer _tankSprite;
+
         protected virtual void Awake()
         {
+            _tankSprite = GetComponent<SpriteRenderer>();
         }
 
         protected virtual void Start()

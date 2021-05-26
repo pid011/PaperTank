@@ -25,7 +25,7 @@ namespace PaperTank
             base.Update();
 
             transform.Translate(new Vector3(_horizontal, 0f, _vertical) * _moveSpeed * Time.deltaTime);
-            RotateSprite();
+            //RotateSprite();
             RotateTurret();
             DoFire();
         }
@@ -56,14 +56,14 @@ namespace PaperTank
             }
         }
 
-        private void RotateSprite()
-        {
-            var spriteAngle = TankSprite.transform.eulerAngles;
-            var cameraAngle = Camera.main.transform.eulerAngles;
+        //private void RotateSprite()
+        //{
+        //    var spriteAngle = TankSprite.transform.eulerAngles;
+        //    var cameraAngle = Camera.main.transform.eulerAngles;
 
-            var angle = new Vector3(cameraAngle.x, spriteAngle.y, spriteAngle.z);
-            TankSprite.transform.eulerAngles = angle;
-        }
+        //    var angle = new Vector3(cameraAngle.x, spriteAngle.y, spriteAngle.z);
+        //    TankSprite.transform.eulerAngles = angle;
+        //}
 
         private void RotateTurret()
         {

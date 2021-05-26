@@ -17,25 +17,25 @@ namespace PaperTank
 
         protected override IEnumerator OnEnter()
         {
-            Debug.Log("FireToTarget: OnEnter");
+            // Debug.Log("FireToTarget: OnEnter");
             yield break;
         }
 
         protected override IEnumerator OnExecute()
         {
-            Debug.Log("FireToTarget: OnExecute");
+            // Debug.Log("FireToTarget: OnExecute");
 
             var target = _findPlayer.Target;
             if (target == null) yield break;
 
             _turret.Rotator.TargetPoint = target.position;
             _turret.WeaponSystem.Fire("Enemy");
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
         }
 
         protected override IEnumerator OnExit()
         {
-            Debug.Log("FireToTarget: OnExit");
+            // Debug.Log("FireToTarget: OnExit");
             yield break;
         }
     }
