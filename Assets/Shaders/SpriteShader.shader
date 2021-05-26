@@ -9,7 +9,7 @@ Shader "Custom/SpriteShader"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="CutOut" }
         LOD 200
         Cull off
 
