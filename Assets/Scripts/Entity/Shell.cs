@@ -51,6 +51,8 @@ namespace PaperTank
             var look = transform.position + diff;
             // 구한 벡터로 바라보기
             transform.LookAt(look);
+            // 90 degree
+            transform.eulerAngles += new Vector3(90, 0, 0);
 
             // 이전 위치 갱신
             _previousPos = transform.position;
@@ -70,7 +72,7 @@ namespace PaperTank
         {
             _rigidbody.AddRelativeForce(Vector3.forward * Speed, ForceMode.Impulse);
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1f);
             Explosion();
         }
 

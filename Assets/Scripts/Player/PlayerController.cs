@@ -24,7 +24,7 @@ namespace PaperTank
         {
             base.Update();
 
-            transform.Translate(new Vector3(_horizontal, 0f, _vertical) * _moveSpeed * Time.deltaTime);
+            transform.Translate(_moveSpeed * Time.deltaTime * new Vector3(_horizontal, 0f, _vertical));
             //RotateSprite();
             RotateTurret();
             DoFire();
@@ -73,15 +73,9 @@ namespace PaperTank
             Ray rayFromCam = Camera.main.ScreenPointToRay(mousePos);
             if (Physics.Raycast(rayFromCam, out RaycastHit hit, maxDistance: 1000f))
             {
-                //if (hit.point.x > _previousHitPoint.x - 1f && hit.point.x < _previousHitPoint.x + 1f)
-                //{
-                //    return;
-                //}
-                var targetPoint = hit.point;
+                Turret.Rotator.TargetPoint = hit.point;
 
-                Turret.Rotator.TargetPoint = targetPoint;
-
-                Debug.DrawLine(Camera.main.transform.position, targetPoint, Color.red);
+                Debug.DrawLine(Camera.main.transform.position, Turret.Rotator.TargetPoint, Color.red);
             }
         }
 
