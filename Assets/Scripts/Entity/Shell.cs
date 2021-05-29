@@ -60,9 +60,15 @@ namespace PaperTank
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!string.IsNullOrWhiteSpace(TagToDoNotCollide) && other.gameObject.CompareTag(TagToDoNotCollide))
+            if (!string.IsNullOrWhiteSpace(TagToDoNotCollide) && other.CompareTag(TagToDoNotCollide))
             {
                 return;
+            }
+
+            TankBehaviour tank;
+            if ((tank = other.GetComponent<TankBehaviour>()) != null)
+            {
+                tank.GiveDamage(15);
             }
 
             Explosion();

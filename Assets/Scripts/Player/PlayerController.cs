@@ -7,10 +7,6 @@ namespace PaperTank
     public class PlayerController : TankBehaviour
     {
         [SerializeField] private float _moveSpeed;
-        [SerializeField] private float _fireCool = 2f;
-        [SerializeField] private BoxCollider _wall;
-
-        private Vector3 _previousPosition;
 
         // rotate
         private Vector2 _mousePosition;
@@ -27,7 +23,6 @@ namespace PaperTank
         {
             base.Update();
 
-            _previousPosition = transform.position;
             transform.Translate(_moveSpeed * Time.deltaTime * new Vector3(_horizontal, 0f, _vertical));
 
             //RotateSprite();
@@ -61,15 +56,6 @@ namespace PaperTank
             }
         }
 
-        //private void RotateSprite()
-        //{
-        //    var spriteAngle = TankSprite.transform.eulerAngles;
-        //    var cameraAngle = Camera.main.transform.eulerAngles;
-
-        //    var angle = new Vector3(cameraAngle.x, spriteAngle.y, spriteAngle.z);
-        //    TankSprite.transform.eulerAngles = angle;
-        //}
-
         private void RotateTurret()
         {
             Vector3 mousePos = _mousePosition;
@@ -99,7 +85,7 @@ namespace PaperTank
         private IEnumerator Cooldown()
         {
             _isCooldown = true;
-            yield return new WaitForSeconds(_fireCool);
+            yield return new WaitForSeconds(Turret.WeaponSystem.Cooldown);
             _isCooldown = false;
         }
     }

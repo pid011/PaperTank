@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace PaperTank
 {
@@ -6,11 +7,17 @@ namespace PaperTank
     public class TankBehaviour : MonoBehaviour
     {
         [SerializeField] private Turret _turret;
+        [SerializeField] private GameObject _damagePrefab;
+        [SerializeField] private Vector3 _damageInstantiateOffset;
+        [SerializeField] private int _maxHealth = 100;
 
         public SpriteRenderer TankSprite => _tankSprite;
         public Turret Turret => _turret;
+        public int Health { get => _health; private set => _health = Mathf.Clamp(value, 0, _maxHealth); }
 
+        private int _health;
         private SpriteRenderer _tankSprite;
+        private bool _canPlayHitAnimation = true;
 
         protected virtual void Awake()
         {
@@ -25,6 +32,24 @@ namespace PaperTank
         protected virtual void Update()
         {
             FlipSprite();
+        }
+
+        public void GiveDamage(int damage)
+        {
+            Health -= damage;
+            var damageObject = Instantiate(_damagePrefab, transform.position + _damageInstantiateOffset, Quaternion.identity);
+            damageObject.GetComponent<Damage>().DamageNumber = damage;
+
+            if (_canPlayHitAnimation) StartCoroutine(HitAnimation());
+        }
+
+        private IEnumerator HitAnimation()
+        {
+            _canPlayHitAnimation = false;
+            TankSprite.material.color = Color.red;
+            yield return new WaitForSeconds(0.2f);
+            TankSprite.material.color = Color.white;
+            _canPlayHitAnimation = true;
         }
 
         private void FlipSprite()

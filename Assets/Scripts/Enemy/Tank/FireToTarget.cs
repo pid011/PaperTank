@@ -30,7 +30,7 @@ namespace PaperTank
 
             _turret.Rotator.TargetPoint = target.position;
             _turret.WeaponSystem.Fire("Enemy");
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(_turret.WeaponSystem.Cooldown);
         }
 
         protected override IEnumerator OnExit()

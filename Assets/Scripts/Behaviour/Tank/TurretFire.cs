@@ -7,6 +7,9 @@ namespace PaperTank
     {
         [SerializeField] private GameObject _shell;
         [SerializeField] private float _shellSpeed = 10f;
+        [SerializeField] private int _cooldown = 2;
+
+        public int Cooldown => _cooldown;
 
         private TurretAim _turret;
 
