@@ -78,7 +78,7 @@ namespace PaperTank
 
         private void Explosion()
         {
-            Instantiate(_explosion, transform.position, Quaternion.identity);
+            Instantiate(_explosion, _previousPos, Quaternion.identity);
             Destroy(gameObject);
         }
     }
