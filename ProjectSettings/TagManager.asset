@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - Hit
   - Enemy
+  - Wall
   layers:
   - Default
   - TransparentFX
