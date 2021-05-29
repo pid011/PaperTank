@@ -37,7 +37,8 @@ namespace PaperTank
         public void GiveDamage(int damage)
         {
             Health -= damage;
-            var damageObject = Instantiate(_damagePrefab, transform.position + _damageInstantiateOffset, Quaternion.identity);
+            var angle = new Vector3(0f, Camera.main.transform.eulerAngles.y, 0f);
+            var damageObject = Instantiate(_damagePrefab, transform.position + _damageInstantiateOffset, Quaternion.Euler(angle));
             damageObject.GetComponent<Damage>().DamageNumber = damage;
 
             if (_canPlayHitAnimation) StartCoroutine(HitAnimation());
