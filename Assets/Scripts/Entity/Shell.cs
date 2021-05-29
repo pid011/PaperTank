@@ -60,15 +60,16 @@ namespace PaperTank
 
         private void OnTriggerEnter(Collider other)
         {
+            // do not explode when collide tag of TagToDoNotCollide
             if (!string.IsNullOrWhiteSpace(TagToDoNotCollide) && other.CompareTag(TagToDoNotCollide))
             {
                 return;
             }
 
-            TankBehaviour tank;
-            if ((tank = other.GetComponent<TankBehaviour>()) != null)
+            // do not explode when collide with projectile
+            if (other.CompareTag("Projectile"))
             {
-                tank.GiveDamage(15);
+                return;
             }
 
             Explosion();

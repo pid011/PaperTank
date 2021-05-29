@@ -27,7 +27,16 @@ namespace PaperTank
 
         private void FixedUpdate()
         {
-            if (++_count >= 1) _sphereCollider.enabled = false;
+            if (++_count >= 3) _sphereCollider.enabled = false;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            TankBehaviour behaviour;
+            if ((behaviour = other.GetComponent<TankBehaviour>()) != null)
+            {
+                behaviour.GiveDamage(15);
+            }
         }
     }
 }

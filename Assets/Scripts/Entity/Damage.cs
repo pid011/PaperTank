@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 namespace PaperTank
@@ -10,20 +11,31 @@ namespace PaperTank
 
         public int DamageNumber { get; set; }
 
-        private TextMesh _damageText;
-
-        private void Awake()
-        {
-            _damageText = GetComponent<TextMesh>();
-        }
-
         private void Start()
         {
-            _damageText.text = DamageNumber.ToString();
+            GetComponent<TextMesh>().text = DamageNumber.ToString();
 
-            transform.DOMove(transform.position + Vector3.up * 2f, Duration).SetEase(Ease.OutCirc);
-            GetComponent<MeshRenderer>().material.DOFade(0f, Duration).SetEase(Ease.InCirc);
-            Destroy(gameObject, Duration);
+            StartCoroutine(Tweening());
+        }
+
+        private IEnumerator Tweening()
+        {
+            int count = 0;
+            int max = 2;
+
+            Tween moveTween = transform
+                .DOMove(transform.position + Vector3.up * 2f, Duration)
+                .SetEase(Ease.OutCirc)
+                .OnKill(() => count++);
+
+            Tween fadeTween = GetComponent<MeshRenderer>().material
+                .DOFade(0f, Duration)
+                .SetEase(Ease.InCirc)
+                .OnKill(() => count++);
+
+            yield return new WaitUntil(() => count == max);
+
+            Destroy(gameObject);
         }
     }
 }
