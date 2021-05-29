@@ -8,6 +8,9 @@ namespace PaperTank
     {
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _fireCool = 2f;
+        [SerializeField] private BoxCollider _wall;
+
+        private Vector3 _previousPosition;
 
         // rotate
         private Vector2 _mousePosition;
@@ -24,7 +27,9 @@ namespace PaperTank
         {
             base.Update();
 
+            _previousPosition = transform.position;
             transform.Translate(_moveSpeed * Time.deltaTime * new Vector3(_horizontal, 0f, _vertical));
+
             //RotateSprite();
             RotateTurret();
             DoFire();
