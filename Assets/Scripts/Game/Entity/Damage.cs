@@ -14,27 +14,21 @@ namespace PaperTank
         private void Start()
         {
             GetComponent<TextMesh>().text = DamageNumber.ToString();
+            transform
+                .DOMove(transform.position + Vector3.up * 2f, Duration)
+                .SetEase(Ease.OutCirc);
 
-            StartCoroutine(Tweening());
+            GetComponent<MeshRenderer>().material
+                .DOFade(0f, Duration)
+                .SetEase(Ease.InCirc);
+
+            StartCoroutine(DestoryAfterDuration());
         }
 
-        private IEnumerator Tweening()
+        private IEnumerator DestoryAfterDuration()
         {
-            int count = 0;
-            int max = 2;
-
-            Tween moveTween = transform
-                .DOMove(transform.position + Vector3.up * 2f, Duration)
-                .SetEase(Ease.OutCirc)
-                .OnKill(() => count++);
-
-            Tween fadeTween = GetComponent<MeshRenderer>().material
-                .DOFade(0f, Duration)
-                .SetEase(Ease.InCirc)
-                .OnKill(() => count++);
-
-            yield return new WaitUntil(() => count == max);
-
+            yield return new WaitForSeconds(Duration);
+            yield return new WaitForEndOfFrame();
             Destroy(gameObject);
         }
     }

@@ -8,7 +8,7 @@ namespace PaperTank
 
         public void OpenStage()
         {
-            SceneLoader.Instance.LoadScene(_sceneName);
+            SceneLoader.LoadScene(_sceneName);
         }
     }
 }

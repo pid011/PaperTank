@@ -4,64 +4,31 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SceneLoader : MonoBehaviour
+public sealed class SceneLoader : Singleton<SceneLoader>
 {
     [SerializeField] private CanvasGroup _sceneLoaderCanvasGroup;
     [SerializeField] private Slider _progressBar;
 
-    public static SceneLoader Instance
-    {
-        get
-        {
-            if (s_instance == null)
-            {
-                var obj = FindObjectOfType<SceneLoader>();
-                if (obj != null)
-                {
-                    s_instance = obj;
-                }
-                else
-                {
-                    var sceneLoaderPrefab = Resources.Load<SceneLoader>("SceneLoader");
-                    s_instance = Instantiate(sceneLoaderPrefab);
-                }
-            }
-
-            return s_instance;
-        }
-
-        private set
-        {
-            s_instance = value;
-        }
-    }
-    private static SceneLoader s_instance;
-
     private string _loadSceneName;
 
-    private void Awake()
+    public static void LoadScene(string sceneName)
     {
-        if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        if (Instance == null) return;
+        Time.timeScale = 1f;
 
-        DontDestroyOnLoad(gameObject);
-    }
-
-    public void LoadScene(string sceneName)
-    {
-        DOTween.Clear();
-
-        gameObject.SetActive(true);
-        SceneManager.sceneLoaded += LoadSceneEnd;
-        _loadSceneName = sceneName;
-        StartCoroutine(Load(sceneName));
+        Instance.gameObject.SetActive(true);
+        SceneManager.sceneLoaded += Instance.LoadSceneEnd;
+        Instance._loadSceneName = sceneName;
+        Instance.StartCoroutine(Instance.Load(sceneName));
     }
 
     private IEnumerator Load(string sceneName)
     {
+        DOTween.KillAll(true);
+        DOTween.Clear();
+
+        yield return new WaitForEndOfFrame();
+
         _progressBar.value = 0f;
 
         yield return StartCoroutine(Fade(true));

@@ -10,6 +10,7 @@ TagManager:
   - Hit
   - Enemy
   - Wall
+  - Manager
   layers:
   - Default
   - TransparentFX

@@ -78,7 +78,6 @@ namespace PaperTank
         private IEnumerator StraightMove()
         {
             _rigidbody.AddRelativeForce(Vector3.forward * Speed, ForceMode.Impulse);
-
             yield return new WaitForSeconds(1f);
             Explosion();
         }

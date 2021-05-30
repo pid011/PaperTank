@@ -31,7 +31,7 @@ namespace PaperTank
 
         protected virtual void Update()
         {
-            FlipSprite();
+            if (Time.timeScale != 0) FlipSprite();
         }
 
         public void GiveDamage(int damage)

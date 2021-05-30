@@ -15,9 +15,9 @@ namespace PaperTank
             _currentPanel.OpenPanel();
         }
 
-        public void CloseCurrentPanel(InputAction.CallbackContext _)
+        public void CloseCurrentPanel(InputAction.CallbackContext context)
         {
-            CloseCurrentPanel();
+            if (context.performed) CloseCurrentPanel();
         }
 
         public void CloseCurrentPanel()
