@@ -1,8 +1,9 @@
-﻿using UnityEngine.InputSystem;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace PaperTank
 {
-    public class PauseInteraction : InGamePanelInteraction
+    public class PauseInteraction : PanelInteraction
     {
         public void OnPause(InputAction.CallbackContext context)
         {
@@ -31,6 +32,16 @@ namespace PaperTank
         public void GoToMainMenu()
         {
             SceneLoader.LoadScene("Main Menu");
+        }
+
+        protected override void OnPanelOpened()
+        {
+            Time.timeScale = 0f;
+        }
+
+        protected override void OnPanelClosed()
+        {
+            Time.timeScale = 1f;
         }
     }
 }
