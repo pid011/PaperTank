@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PaperTank
+namespace PaperTank.Game.BehaviourMovement
 {
     [ExecuteInEditMode]
     public class CameraMove : MonoBehaviour

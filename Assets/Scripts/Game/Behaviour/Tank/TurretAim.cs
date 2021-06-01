@@ -1,16 +1,13 @@
 ﻿using UnityEngine;
 
-namespace PaperTank
+namespace PaperTank.Game.Behaviour.Tank
 {
     public class TurretAim : MonoBehaviour
     {
         public Vector3 Angle => transform.localEulerAngles;
         public Vector3 TargetPoint
         {
-            get
-            {
-                return _targetPoint;
-            }
+            get => _targetPoint;
             set
             {
                 _targetPoint = value;

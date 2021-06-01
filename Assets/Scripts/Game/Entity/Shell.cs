@@ -1,7 +1,10 @@
 ﻿using System.Collections;
+
+using PaperTank.Game.BehaviourMovement;
+
 using UnityEngine;
 
-namespace PaperTank
+namespace PaperTank.Game.Entity
 {
     public class Shell : MonoBehaviour
     {

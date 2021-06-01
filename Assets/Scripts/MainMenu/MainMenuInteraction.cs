@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using PaperTank.UI;
+
+using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace PaperTank
+namespace PaperTank.MainMenu
 {
     public class MainMenuInteraction : MonoBehaviour
     {

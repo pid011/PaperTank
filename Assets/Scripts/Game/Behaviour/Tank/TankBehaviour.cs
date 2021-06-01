@@ -1,7 +1,10 @@
 ﻿using System.Collections;
+
+using PaperTank.Game.Entity;
+
 using UnityEngine;
 
-namespace PaperTank
+namespace PaperTank.Game.Behaviour.Tank
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class TankBehaviour : MonoBehaviour
@@ -11,17 +14,16 @@ namespace PaperTank
         [SerializeField] private Vector3 _damageInstantiateOffset;
         [SerializeField] private int _maxHealth = 100;
 
-        public SpriteRenderer TankSprite => _tankSprite;
+        public SpriteRenderer TankSprite { get; private set; }
         public Turret Turret => _turret;
         public int Health { get => _health; private set => _health = Mathf.Clamp(value, 0, _maxHealth); }
 
         private int _health;
-        private SpriteRenderer _tankSprite;
         private bool _canPlayHitAnimation = true;
 
         protected virtual void Awake()
         {
-            _tankSprite = GetComponent<SpriteRenderer>();
+            TankSprite = GetComponent<SpriteRenderer>();
         }
 
         protected virtual void Start()
@@ -56,7 +58,7 @@ namespace PaperTank
         private void FlipSprite()
         {
             // flip by turret rotate
-            _tankSprite.flipX = 180 <= Turret.Rotator.Angle.y && Turret.Rotator.Angle.y < 360;
+            TankSprite.flipX = 180 <= Turret.Rotator.Angle.y && Turret.Rotator.Angle.y < 360;
         }
     }
 }

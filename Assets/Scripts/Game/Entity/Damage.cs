@@ -1,8 +1,10 @@
 ﻿using System.Collections;
+
 using DG.Tweening;
+
 using UnityEngine;
 
-namespace PaperTank
+namespace PaperTank.Game.Entity
 {
     [RequireComponent(typeof(TextMesh))]
     public class Damage : MonoBehaviour
@@ -15,17 +17,17 @@ namespace PaperTank
         {
             GetComponent<TextMesh>().text = DamageNumber.ToString();
             transform
-                .DOMove(transform.position + Vector3.up * 2f, Duration)
+                .DOMove(transform.position + (Vector3.up * 2f), Duration)
                 .SetEase(Ease.OutCirc);
 
             GetComponent<MeshRenderer>().material
                 .DOFade(0f, Duration)
                 .SetEase(Ease.InCirc);
 
-            StartCoroutine(DestoryAfterDuration());
+            StartCoroutine(DestroyAfterDuration());
         }
 
-        private IEnumerator DestoryAfterDuration()
+        private IEnumerator DestroyAfterDuration()
         {
             yield return new WaitForSeconds(Duration);
             yield return new WaitForEndOfFrame();

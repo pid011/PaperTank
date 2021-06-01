@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using PaperTank.Game.Entity;
 
-namespace PaperTank
+using UnityEngine;
+
+namespace PaperTank.Game.Behaviour.Tank
 {
     [RequireComponent(typeof(TurretAim))]
     public class TurretFire : MonoBehaviour
@@ -25,7 +27,7 @@ namespace PaperTank
         /// <returns>발사된 포탄 오브젝트</returns>
         public Shell Fire(string tagToDoNotCollide)
         {
-            var initPos = transform.position + Vector3.up * 0.2f;
+            var initPos = transform.position + (Vector3.up * 0.2f);
             var rotation = Quaternion.Euler(_turret.transform.eulerAngles);
 
             var shell = Instantiate(_shell, initPos, rotation).GetComponent<Shell>();

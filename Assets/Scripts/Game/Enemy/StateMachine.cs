@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections;
+
 using UnityEngine;
 
-namespace PaperTank
+namespace PaperTank.Game.Enemy
 {
     public class StateMachine : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace PaperTank
+namespace PaperTank.Game.Entity
 {
     [RequireComponent(typeof(SpriteRenderer)), ExecuteInEditMode]
     public class SpriteShadow : MonoBehaviour

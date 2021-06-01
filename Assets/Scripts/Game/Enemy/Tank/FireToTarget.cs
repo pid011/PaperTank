@@ -1,7 +1,10 @@
 ﻿using System.Collections;
+
+using PaperTank.Game.Behaviour.Tank;
+
 using UnityEngine;
 
-namespace PaperTank
+namespace PaperTank.Game.Enemy.Tank
 {
     [RequireComponent(typeof(FindPlayer))]
     public class FireToTarget : StateBehaviour

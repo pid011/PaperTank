@@ -1,30 +1,33 @@
 ﻿using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : Component
+namespace PaperTank.Util
 {
-    protected static T Instance
+    public class Singleton<T> : MonoBehaviour where T : Component
     {
-        get
+        protected static T Instance
         {
-            if (s_instance == null)
+            get
             {
-                var obj = FindObjectOfType<T>();
-                if (obj != null) s_instance = obj;
+                if (s_instance == null)
+                {
+                    var obj = FindObjectOfType<T>();
+                    if (obj != null) s_instance = obj;
+                }
+
+                return s_instance;
+            }
+        }
+        private static T s_instance;
+
+        protected virtual void Awake()
+        {
+            if (Instance != this)
+            {
+                Destroy(gameObject);
+                return;
             }
 
-            return s_instance;
+            DontDestroyOnLoad(gameObject);
         }
-    }
-    private static T s_instance;
-
-    protected virtual void Awake()
-    {
-        if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        DontDestroyOnLoad(gameObject);
     }
 }

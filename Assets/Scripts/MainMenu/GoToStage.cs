@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using PaperTank.Util;
 
-namespace PaperTank
+using UnityEngine;
+
+namespace PaperTank.MainMenu
 {
     public class GoToStage : MonoBehaviour
     {

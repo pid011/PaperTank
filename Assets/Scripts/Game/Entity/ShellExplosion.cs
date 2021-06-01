@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using PaperTank.Game.Behaviour.Tank;
 
-namespace PaperTank
+using UnityEngine;
+
+namespace PaperTank.Game.Entity
 {
     public class ShellExplosion : MonoBehaviour
     {

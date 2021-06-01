@@ -1,8 +1,11 @@
 ﻿using System.Collections;
+
+using PaperTank.Game.Behaviour.Tank;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace PaperTank
+namespace PaperTank.Game.Player
 {
     public class PlayerController : TankBehaviour
     {

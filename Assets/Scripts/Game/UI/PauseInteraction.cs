@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using PaperTank.UI;
+using PaperTank.Util;
+
+using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace PaperTank
+namespace PaperTank.Game.UI
 {
     public class PauseInteraction : PanelInteraction
     {

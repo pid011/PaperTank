@@ -1,89 +1,94 @@
 ﻿using System.Collections;
+
 using DG.Tweening;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public sealed class SceneLoader : Singleton<SceneLoader>
+namespace PaperTank.Util
 {
-    [SerializeField] private CanvasGroup _sceneLoaderCanvasGroup;
-    [SerializeField] private Slider _progressBar;
-
-    private string _loadSceneName;
-
-    public static void LoadScene(string sceneName)
+    public sealed class SceneLoader : Singleton<SceneLoader>
     {
-        if (Instance == null) return;
-        Time.timeScale = 1f;
+        [SerializeField] private CanvasGroup _sceneLoaderCanvasGroup;
+        [SerializeField] private Slider _progressBar;
 
-        Instance.gameObject.SetActive(true);
-        SceneManager.sceneLoaded += Instance.LoadSceneEnd;
-        Instance._loadSceneName = sceneName;
-        Instance.StartCoroutine(Instance.Load(sceneName));
-    }
+        private string _loadSceneName;
 
-    private IEnumerator Load(string sceneName)
-    {
-        DOTween.KillAll(true);
-        DOTween.Clear();
-
-        yield return new WaitForEndOfFrame();
-
-        _progressBar.value = 0f;
-
-        yield return StartCoroutine(Fade(true));
-
-        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
-
-        op.allowSceneActivation = false;
-
-        float timer = 0.0f;
-
-        while (!op.isDone)
+        public static void LoadScene(string sceneName)
         {
-            yield return null;
-            timer += Time.unscaledDeltaTime;
+            if (Instance == null) return;
+            Time.timeScale = 1f;
 
-            if (op.progress < 0.9f)
+            Instance.gameObject.SetActive(true);
+            SceneManager.sceneLoaded += Instance.LoadSceneEnd;
+            Instance._loadSceneName = sceneName;
+            Instance.StartCoroutine(Instance.Load(sceneName));
+        }
+
+        private IEnumerator Load(string sceneName)
+        {
+            DOTween.KillAll(true);
+            DOTween.Clear();
+
+            yield return new WaitForEndOfFrame();
+
+            _progressBar.value = 0f;
+
+            yield return StartCoroutine(Fade(true));
+
+            AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
+
+            op.allowSceneActivation = false;
+
+            float timer = 0.0f;
+
+            while (!op.isDone)
             {
-                _progressBar.value = Mathf.Lerp(_progressBar.value, op.progress, timer);
-                if (_progressBar.value >= op.progress)
+                yield return null;
+                timer += Time.unscaledDeltaTime;
+
+                if (op.progress < 0.9f)
                 {
-                    timer = 0f;
+                    _progressBar.value = Mathf.Lerp(_progressBar.value, op.progress, timer);
+                    if (_progressBar.value >= op.progress)
+                    {
+                        timer = 0f;
+                    }
+                }
+                else
+                {
+                    _progressBar.value = Mathf.Lerp(_progressBar.value, 1f, timer);
+
+                    if (_progressBar.value == 1.0f)
+                    {
+                        op.allowSceneActivation = true;
+                        yield break;
+                    }
                 }
             }
-            else
-            {
-                _progressBar.value = Mathf.Lerp(_progressBar.value, 1f, timer);
+        }
 
-                if (_progressBar.value == 1.0f)
-                {
-                    op.allowSceneActivation = true;
-                    yield break;
-                }
+        private void LoadSceneEnd(Scene scene, LoadSceneMode loadSceneMode)
+        {
+            if (scene.name == _loadSceneName)
+            {
+                StartCoroutine(Fade(false));
+                SceneManager.sceneLoaded -= LoadSceneEnd;
             }
         }
-    }
 
-    private void LoadSceneEnd(Scene scene, LoadSceneMode loadSceneMode)
-    {
-        if (scene.name == _loadSceneName)
+        private IEnumerator Fade(bool isFadeIn)
         {
-            StartCoroutine(Fade(false));
-            SceneManager.sceneLoaded -= LoadSceneEnd;
-        }
-    }
+            float timer = 0f;
+            while (timer <= 1f)
+            {
+                yield return null;
+                timer += Time.unscaledTime * 2f;
+                _sceneLoaderCanvasGroup.alpha = Mathf.Lerp(isFadeIn ? 0 : 1, isFadeIn ? 1 : 0, timer);
+            }
 
-    private IEnumerator Fade(bool isFadeIn)
-    {
-        float timer = 0f;
-        while (timer <= 1f)
-        {
-            yield return null;
-            timer += Time.unscaledTime * 2f;
-            _sceneLoaderCanvasGroup.alpha = Mathf.Lerp(isFadeIn ? 0 : 1, isFadeIn ? 1 : 0, timer);
+            if (!isFadeIn) gameObject.SetActive(false);
         }
-
-        if (!isFadeIn) gameObject.SetActive(false);
     }
 }

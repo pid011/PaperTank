@@ -1,7 +1,10 @@
 ﻿using System.Collections;
+
+using PaperTank.Game.Enemy.Tank;
+
 using UnityEngine;
 
-namespace PaperTank
+namespace PaperTank.Game.Enemy
 {
     [RequireComponent(typeof(Collider))]
     public class FindPlayer : StateBehaviour

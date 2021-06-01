@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PaperTank
+namespace PaperTank.Game.Behaviour.Tank
 {
     [RequireComponent(typeof(TurretAim), typeof(TurretFire))]
     public class Turret : MonoBehaviour
