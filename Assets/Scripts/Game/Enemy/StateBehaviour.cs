@@ -12,8 +12,8 @@ namespace PaperTank.Game.Enemy
             Enter, Execute, Exit
         }
 
-        public bool Done { get; private set; }
-        public Type NextState { get; protected set; }
+        public bool done { get; private set; }
+        public Type nextState { get; protected set; }
 
         private Coroutine _currentCoroutine;
         private State _currentState;
@@ -24,7 +24,7 @@ namespace PaperTank.Game.Enemy
 
         public IEnumerator Execute()
         {
-            Done = false;
+            done = false;
 
             _currentState = State.Enter;
             _currentCoroutine = StartCoroutine(OnEnter());
@@ -38,7 +38,7 @@ namespace PaperTank.Game.Enemy
             _currentCoroutine = StartCoroutine(OnExit());
             yield return _currentCoroutine;
 
-            Done = true;
+            done = true;
         }
 
         public IEnumerator StopState()
@@ -52,13 +52,13 @@ namespace PaperTank.Game.Enemy
                     // Done 값을 직접 true로 변경
                     StopAllCoroutines();
                     yield return StartCoroutine(OnExit());
-                    Done = true;
+                    done = true;
                     break;
 
                 // Exit일 경우
                 case State.Exit:
                     // 그대로 Done이 true로 변경 될 때까지 기다림
-                    yield return new WaitUntil(() => Done);
+                    yield return new WaitUntil(() => done);
                     break;
             }
 

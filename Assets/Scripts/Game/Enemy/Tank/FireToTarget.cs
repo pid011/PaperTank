@@ -31,9 +31,9 @@ namespace PaperTank.Game.Enemy.Tank
             var target = _findPlayer.target;
             if (target == null) yield break;
 
-            _turret.Rotator.targetPoint = target.position;
-            _turret.WeaponSystem.Fire("Enemy");
-            yield return new WaitForSeconds(_turret.WeaponSystem.cooldown);
+            _turret.rotator.targetPoint = target.position;
+            _turret.weaponSystem.Fire("Enemy");
+            yield return new WaitForSeconds(_turret.weaponSystem.cooldown);
         }
 
         protected override IEnumerator OnExit()

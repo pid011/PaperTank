@@ -11,11 +11,11 @@ namespace PaperTank.Game.Entity
     {
         private const float Duration = 1f;
 
-        public int DamageNumber { get; set; }
+        public int damageNumber { get; set; }
 
         private void Start()
         {
-            GetComponent<TextMesh>().text = DamageNumber.ToString();
+            GetComponent<TextMesh>().text = damageNumber.ToString();
             transform
                 .DOMove(transform.position + (Vector3.up * 2f), Duration)
                 .SetEase(Ease.OutCirc);

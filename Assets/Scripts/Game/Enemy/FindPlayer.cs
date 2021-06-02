@@ -33,7 +33,7 @@ namespace PaperTank.Game.Enemy
                     if (!collideObject.CompareTag("Player")) continue;
 
                     target = collideObject.transform;
-                    NextState = typeof(FireToTarget);
+                    nextState = typeof(FireToTarget);
                     yield break;
                 }
 

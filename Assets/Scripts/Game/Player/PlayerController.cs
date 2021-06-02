@@ -67,9 +67,9 @@ namespace PaperTank.Game.Player
             var rayFromCam = Camera.main.ScreenPointToRay(mousePos);
             if (Physics.Raycast(rayFromCam, out var hit, 1000f))
             {
-                turret.Rotator.targetPoint = hit.point;
+                turret.rotator.targetPoint = hit.point;
 
-                Debug.DrawLine(Camera.main.transform.position, turret.Rotator.targetPoint, Color.red);
+                Debug.DrawLine(Camera.main.transform.position, turret.rotator.targetPoint, Color.red);
             }
         }
 
@@ -80,7 +80,7 @@ namespace PaperTank.Game.Player
 
             if (_firePressed)
             {
-                turret.WeaponSystem.Fire("Player");
+                turret.weaponSystem.Fire("Player");
                 StartCoroutine(Cooldown());
             }
         }
@@ -88,7 +88,7 @@ namespace PaperTank.Game.Player
         private IEnumerator Cooldown()
         {
             _isCooldown = true;
-            yield return new WaitForSeconds(turret.WeaponSystem.cooldown);
+            yield return new WaitForSeconds(turret.weaponSystem.cooldown);
             _isCooldown = false;
         }
     }

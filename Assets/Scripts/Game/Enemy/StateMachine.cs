@@ -24,7 +24,7 @@ namespace PaperTank.Game.Enemy
 
             while (true)
             {
-                Type nextState = _current.NextState ?? _states[0].GetType();
+                Type nextState = _current.nextState ?? _states[0].GetType();
 
                 foreach (var state in _states)
                 {

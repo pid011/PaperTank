@@ -44,7 +44,7 @@ namespace PaperTank.Game.Behaviour.Tank
                 _damagePrefab,
                 transform.position + _damageInstantiateOffset,
                 Quaternion.Euler(angle));
-            damageObject.GetComponent<Damage>().DamageNumber = damage;
+            damageObject.GetComponent<Damage>().damageNumber = damage;
 
             if (_canPlayHitAnimation) StartCoroutine(HitAnimation());
         }
@@ -63,7 +63,7 @@ namespace PaperTank.Game.Behaviour.Tank
         private void FlipSprite()
         {
             // flip by turret rotate
-            tankSprite.flipX = 180 <= turret.Rotator.angle.y && turret.Rotator.angle.y < 360;
+            tankSprite.flipX = 180 <= turret.rotator.angle.y && turret.rotator.angle.y < 360;
         }
     }
 }
