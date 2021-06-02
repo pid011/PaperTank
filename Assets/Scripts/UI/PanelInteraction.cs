@@ -10,7 +10,7 @@ namespace PaperTank.UI
         private const float MoveDistance = 5f;
         private const float AnimationDuration = 0.1f;
 
-        public bool IsOpen { get; private set; }
+        public bool isOpen { get; private set; }
 
         private CanvasGroup _canvasGroup;
         private Vector3 _initPos;
@@ -32,7 +32,7 @@ namespace PaperTank.UI
 
         public void OpenPanel()
         {
-            if (IsOpen) return;
+            if (isOpen) return;
 
             DOTween.To(() => _canvasGroup.alpha, x => _canvasGroup.alpha = x, 1f, AnimationDuration - 0.01f);
             _transform
@@ -40,19 +40,19 @@ namespace PaperTank.UI
                 .OnComplete(() =>
                 {
                     _canvasGroup.blocksRaycasts = true;
-                    IsOpen = true;
+                    isOpen = true;
                     OnPanelOpened();
                 });
         }
 
         public void ClosePanel()
         {
-            if (!IsOpen) return;
+            if (!isOpen) return;
 
             // timeScale이 0일 경우에는 Tween이 움직이지 않으므로
             // OnPanelClosed를 먼저 호출하고 이후에 DOTween 실행
             _canvasGroup.blocksRaycasts = false;
-            IsOpen = false;
+            isOpen = false;
             OnPanelClosed();
 
             DOTween.To(() => _canvasGroup.alpha, x => _canvasGroup.alpha = x, 0f, AnimationDuration - 0.01f);

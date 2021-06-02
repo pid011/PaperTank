@@ -11,7 +11,7 @@ namespace PaperTank.Game.Behaviour.Tank
         [SerializeField] private float _shellSpeed = 10f;
         [SerializeField] private int _cooldown = 2;
 
-        public int Cooldown => _cooldown;
+        public int cooldown => _cooldown;
 
         private TurretAim _turret;
 
@@ -31,9 +31,9 @@ namespace PaperTank.Game.Behaviour.Tank
             var rotation = Quaternion.Euler(_turret.transform.eulerAngles);
 
             var shell = Instantiate(_shell, initPos, rotation).GetComponent<Shell>();
-            shell.ShellMovement = Shell.MovementType.Straight;
-            shell.Speed = _shellSpeed;
-            shell.TagToDoNotCollide = tagToDoNotCollide;
+            shell.shellMovement = Shell.MovementType.Straight;
+            shell.speed = _shellSpeed;
+            shell.tagToDoNotCollide = tagToDoNotCollide;
 
             return shell;
         }

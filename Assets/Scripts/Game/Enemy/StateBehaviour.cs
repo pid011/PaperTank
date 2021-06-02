@@ -61,6 +61,7 @@ namespace PaperTank.Game.Enemy
                     yield return new WaitUntil(() => Done);
                     break;
             }
+
             Debug.Log($"{GetType()}: Stopped");
         }
     }

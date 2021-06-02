@@ -12,8 +12,8 @@ namespace PaperTank
 {
     public sealed class StageManager : Singleton<StageManager>
     {
-        public static bool IsStage { get; private set; }
-        public static Scene CurrentScene { get; private set; }
+        public static bool isStage { get; private set; }
+        public static Scene currentScene { get; private set; }
 
         private PlayerController _player;
         private readonly List<EnemyTank> _enemies = new List<EnemyTank>();
@@ -32,8 +32,8 @@ namespace PaperTank
 
         private void OnStageLoaded(Scene scene, LoadSceneMode sceneMode)
         {
-            CurrentScene = scene;
-            Debug.Log($"Loaded scene: {CurrentScene.name}");
+            currentScene = scene;
+            Debug.Log($"Loaded scene: {currentScene.name}");
             _player = null;
             _enemies.Clear();
 
@@ -42,7 +42,7 @@ namespace PaperTank
             // 씬에 플레이어 오브젝트가 없으면 스테이지 씬이 아님
             if (playerObject == null)
             {
-                IsStage = false;
+                isStage = false;
                 return;
             }
 
@@ -55,7 +55,7 @@ namespace PaperTank
                 _enemies.AddRange(enemies.Select(o => o.GetComponent<EnemyTank>()));
             }
 
-            IsStage = true;
+            isStage = true;
         }
     }
 }

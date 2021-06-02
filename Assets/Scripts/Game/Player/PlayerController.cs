@@ -10,17 +10,17 @@ namespace PaperTank.Game.Player
     public class PlayerController : TankBehaviour
     {
         [SerializeField] private float _moveSpeed;
-
-        // rotate
-        private Vector2 _mousePosition;
+        private bool _firePressed;
 
         // move
         private float _horizontal;
-        private float _vertical;
 
         // fire
         private bool _isCooldown;
-        private bool _firePressed;
+
+        // rotate
+        private Vector2 _mousePosition;
+        private float _vertical;
 
         protected override void Update()
         {
@@ -64,12 +64,12 @@ namespace PaperTank.Game.Player
             Vector3 mousePos = _mousePosition;
             mousePos.z = Camera.main.farClipPlane;
 
-            Ray rayFromCam = Camera.main.ScreenPointToRay(mousePos);
-            if (Physics.Raycast(rayFromCam, out RaycastHit hit, maxDistance: 1000f))
+            var rayFromCam = Camera.main.ScreenPointToRay(mousePos);
+            if (Physics.Raycast(rayFromCam, out var hit, 1000f))
             {
-                Turret.Rotator.TargetPoint = hit.point;
+                turret.Rotator.targetPoint = hit.point;
 
-                Debug.DrawLine(Camera.main.transform.position, Turret.Rotator.TargetPoint, Color.red);
+                Debug.DrawLine(Camera.main.transform.position, turret.Rotator.targetPoint, Color.red);
             }
         }
 
@@ -80,7 +80,7 @@ namespace PaperTank.Game.Player
 
             if (_firePressed)
             {
-                Turret.WeaponSystem.Fire("Player");
+                turret.WeaponSystem.Fire("Player");
                 StartCoroutine(Cooldown());
             }
         }
@@ -88,7 +88,7 @@ namespace PaperTank.Game.Player
         private IEnumerator Cooldown()
         {
             _isCooldown = true;
-            yield return new WaitForSeconds(Turret.WeaponSystem.Cooldown);
+            yield return new WaitForSeconds(turret.WeaponSystem.cooldown);
             _isCooldown = false;
         }
     }

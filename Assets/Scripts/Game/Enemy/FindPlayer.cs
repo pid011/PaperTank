@@ -11,7 +11,7 @@ namespace PaperTank.Game.Enemy
     {
         [SerializeField] private float _findRadius = 10f;
 
-        public Transform Target { get; private set; }
+        public Transform target { get; private set; }
 
         protected override IEnumerator OnEnter()
         {
@@ -28,14 +28,13 @@ namespace PaperTank.Game.Enemy
             {
                 var colliders = Physics.OverlapSphere(transform.position, _findRadius, 1 << 10); // Behaviour layer
 
-                foreach (var collider in colliders)
+                foreach (var collideObject in colliders)
                 {
-                    if (collider.CompareTag("Player"))
-                    {
-                        Target = collider.transform;
-                        NextState = typeof(FireToTarget);
-                        yield break;
-                    }
+                    if (!collideObject.CompareTag("Player")) continue;
+
+                    target = collideObject.transform;
+                    NextState = typeof(FireToTarget);
+                    yield break;
                 }
 
                 yield return wait;

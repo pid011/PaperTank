@@ -4,8 +4,9 @@ namespace PaperTank.Game.Behaviour.Tank
 {
     public class TurretAim : MonoBehaviour
     {
-        public Vector3 Angle => transform.localEulerAngles;
-        public Vector3 TargetPoint
+        public Vector3 angle => transform.localEulerAngles;
+
+        public Vector3 targetPoint
         {
             get => _targetPoint;
             set

@@ -28,12 +28,12 @@ namespace PaperTank.Game.Enemy.Tank
         {
             // Debug.Log("FireToTarget: OnExecute");
 
-            var target = _findPlayer.Target;
+            var target = _findPlayer.target;
             if (target == null) yield break;
 
-            _turret.Rotator.TargetPoint = target.position;
+            _turret.Rotator.targetPoint = target.position;
             _turret.WeaponSystem.Fire("Enemy");
-            yield return new WaitForSeconds(_turret.WeaponSystem.Cooldown);
+            yield return new WaitForSeconds(_turret.WeaponSystem.cooldown);
         }
 
         protected override IEnumerator OnExit()

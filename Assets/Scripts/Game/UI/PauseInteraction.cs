@@ -12,14 +12,10 @@ namespace PaperTank.Game.UI
         {
             if (!context.started) return;
 
-            if (!IsOpen)
-            {
+            if (!isOpen)
                 OpenPanel();
-            }
             else
-            {
                 ClosePanel();
-            }
         }
 
         public void ResumeStage()
@@ -29,7 +25,7 @@ namespace PaperTank.Game.UI
 
         public void RestartStage()
         {
-            SceneLoader.LoadScene(StageManager.CurrentScene.name);
+            SceneLoader.LoadScene(StageManager.currentScene.name);
         }
 
         public void GoToMainMenu()

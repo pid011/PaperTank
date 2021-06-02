@@ -15,11 +15,11 @@ namespace PaperTank.Game.Entity
 
         [SerializeField] private GameObject _explosion;
 
-        public MovementType ShellMovement { get; set; }
-        public float Speed { get; set; }
-        public Vector3 EndPoint { get; set; }
-        public float ParabolaHeight { get; set; } = 1f;
-        public string TagToDoNotCollide { get; set; }
+        public MovementType shellMovement { get; set; }
+        public float speed { get; set; }
+        public Vector3 endPoint { get; set; }
+        public float parabolaHeight { get; set; } = 1f;
+        public string tagToDoNotCollide { get; set; }
 
         private Rigidbody _rigidbody;
         private Vector3 _previousPos;
@@ -33,13 +33,13 @@ namespace PaperTank.Game.Entity
         {
             _rigidbody.useGravity = false;
 
-            switch (ShellMovement)
+            switch (shellMovement)
             {
                 case MovementType.Straight:
                     StartCoroutine(StraightMove());
                     break;
                 case MovementType.Parabola:
-                    StartCoroutine(Movement.ParabolaMove(transform, transform.position, EndPoint, ParabolaHeight));
+                    StartCoroutine(Movement.ParabolaMove(transform, transform.position, endPoint, parabolaHeight));
                     break;
             }
 
@@ -64,7 +64,7 @@ namespace PaperTank.Game.Entity
         private void OnTriggerEnter(Collider other)
         {
             // do not explode when collide tag of TagToDoNotCollide
-            if (!string.IsNullOrWhiteSpace(TagToDoNotCollide) && other.CompareTag(TagToDoNotCollide))
+            if (!string.IsNullOrWhiteSpace(tagToDoNotCollide) && other.CompareTag(tagToDoNotCollide))
             {
                 return;
             }
@@ -80,7 +80,7 @@ namespace PaperTank.Game.Entity
 
         private IEnumerator StraightMove()
         {
-            _rigidbody.AddRelativeForce(Vector3.forward * Speed, ForceMode.Impulse);
+            _rigidbody.AddRelativeForce(Vector3.forward * speed, ForceMode.Impulse);
             yield return new WaitForSeconds(1f);
             Explosion();
         }

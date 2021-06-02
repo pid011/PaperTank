@@ -28,11 +28,10 @@ namespace PaperTank.Game.Enemy
 
                 foreach (var state in _states)
                 {
-                    if (state.GetType() == nextState)
-                    {
-                        _current = state;
-                        break;
-                    }
+                    if (state.GetType() != nextState) continue;
+
+                    _current = state;
+                    break;
                 }
 
                 yield return StartCoroutine(_current.Execute());

@@ -14,16 +14,16 @@ namespace PaperTank.Game.Behaviour.Tank
         [SerializeField] private Vector3 _damageInstantiateOffset;
         [SerializeField] private int _maxHealth = 100;
 
-        public SpriteRenderer TankSprite { get; private set; }
-        public Turret Turret => _turret;
-        public int Health { get => _health; private set => _health = Mathf.Clamp(value, 0, _maxHealth); }
+        protected SpriteRenderer tankSprite { get; set; }
+        protected Turret turret => _turret;
+        public int health { get => _health; private set => _health = Mathf.Clamp(value, 0, _maxHealth); }
 
         private int _health;
         private bool _canPlayHitAnimation = true;
 
         protected virtual void Awake()
         {
-            TankSprite = GetComponent<SpriteRenderer>();
+            tankSprite = GetComponent<SpriteRenderer>();
         }
 
         protected virtual void Start()
@@ -38,9 +38,12 @@ namespace PaperTank.Game.Behaviour.Tank
 
         public void GiveDamage(int damage)
         {
-            Health -= damage;
+            health -= damage;
             var angle = new Vector3(0f, Camera.main.transform.eulerAngles.y, 0f);
-            var damageObject = Instantiate(_damagePrefab, transform.position + _damageInstantiateOffset, Quaternion.Euler(angle));
+            var damageObject = Instantiate(
+                _damagePrefab,
+                transform.position + _damageInstantiateOffset,
+                Quaternion.Euler(angle));
             damageObject.GetComponent<Damage>().DamageNumber = damage;
 
             if (_canPlayHitAnimation) StartCoroutine(HitAnimation());
@@ -49,16 +52,18 @@ namespace PaperTank.Game.Behaviour.Tank
         private IEnumerator HitAnimation()
         {
             _canPlayHitAnimation = false;
-            TankSprite.material.color = Color.red;
+            var material = tankSprite.material;
+
+            material.color = Color.red;
             yield return new WaitForSeconds(0.2f);
-            TankSprite.material.color = Color.white;
+            material.color = Color.white;
             _canPlayHitAnimation = true;
         }
 
         private void FlipSprite()
         {
             // flip by turret rotate
-            TankSprite.flipX = 180 <= Turret.Rotator.Angle.y && Turret.Rotator.Angle.y < 360;
+            tankSprite.flipX = 180 <= turret.Rotator.angle.y && turret.Rotator.angle.y < 360;
         }
     }
 }

@@ -17,13 +17,13 @@ namespace PaperTank.Util
 
         public static void LoadScene(string sceneName)
         {
-            if (Instance == null) return;
+            if (instance == null) return;
             Time.timeScale = 1f;
 
-            Instance.gameObject.SetActive(true);
-            SceneManager.sceneLoaded += Instance.LoadSceneEnd;
-            Instance._loadSceneName = sceneName;
-            Instance.StartCoroutine(Instance.Load(sceneName));
+            instance.gameObject.SetActive(true);
+            SceneManager.sceneLoaded += instance.LoadSceneEnd;
+            instance._loadSceneName = sceneName;
+            instance.StartCoroutine(instance.Load(sceneName));
         }
 
         private IEnumerator Load(string sceneName)
@@ -51,20 +51,17 @@ namespace PaperTank.Util
                 if (op.progress < 0.9f)
                 {
                     _progressBar.value = Mathf.Lerp(_progressBar.value, op.progress, timer);
-                    if (_progressBar.value >= op.progress)
-                    {
-                        timer = 0f;
-                    }
+                    if (!(_progressBar.value >= op.progress)) continue;
+
+                    timer = 0f;
                 }
                 else
                 {
                     _progressBar.value = Mathf.Lerp(_progressBar.value, 1f, timer);
+                    if (!(_progressBar.value >= 1.0f)) continue;
 
-                    if (_progressBar.value == 1.0f)
-                    {
-                        op.allowSceneActivation = true;
-                        yield break;
-                    }
+                    op.allowSceneActivation = true;
+                    yield break;
                 }
             }
         }
