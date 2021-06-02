@@ -43,3 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6020d5299d381df49b95a89f7cf66dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stageEndPanelPrefab: {fileID: 1541358646754343087, guid: 51c51bbbab315df41a5cb43033d522e8, type: 3}

@@ -10,6 +10,7 @@ namespace PaperTank.Game.UI
     {
         public void OnPause(InputAction.CallbackContext context)
         {
+            if (StageManager.isGameEnd) return;
             if (!context.started) return;
 
             if (!isOpen)

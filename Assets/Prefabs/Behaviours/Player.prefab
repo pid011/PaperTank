@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 4622403437961559553}
   - component: {fileID: 4622403437961559558}
   - component: {fileID: 4622403437961559552}
+  - component: {fileID: 1751088502933608861}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -342,6 +343,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 64bd78ff-a51f-4624-ac80-faa4375c20d5
     m_ActionName: Player Inputs/Fire Shell[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b327573d-5875-4337-af84-219871f97e38
+    m_ActionName: Player Inputs/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f99c4586-0b7d-40c7-b99d-9ef2ad9b532c
+    m_ActionName: UI Inputs/Back[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player Inputs
@@ -364,6 +373,18 @@ MonoBehaviour:
   _damageInstantiateOffset: {x: 0, y: 1, z: 0}
   _maxHealth: 120
   _moveSpeed: 5
+--- !u!114 &1751088502933608861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4622403437961559557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6791500e01ea44a8ac46119e4ff825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4622403438446529716
 GameObject:
   m_ObjectHideFlags: 0

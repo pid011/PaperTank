@@ -24,6 +24,7 @@ namespace PaperTank.Game.Behaviour.Tank
         protected virtual void Awake()
         {
             tankSprite = GetComponent<SpriteRenderer>();
+            _health = _maxHealth;
         }
 
         protected virtual void Start()

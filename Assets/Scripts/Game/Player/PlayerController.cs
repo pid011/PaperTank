@@ -24,6 +24,8 @@ namespace PaperTank.Game.Player
 
         protected override void Update()
         {
+            if (StageManager.isGameEnd) return;
+
             base.Update();
 
             transform.Translate(_moveSpeed * Time.deltaTime * new Vector3(_horizontal, 0f, _vertical));
