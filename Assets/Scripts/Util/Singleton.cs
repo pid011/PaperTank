@@ -2,33 +2,24 @@
 
 namespace PaperTank.Util
 {
-    public class Singleton<T> : MonoBehaviour where T : Component
+    public class Singleton<T> where T : MonoBehaviour
     {
+        protected Singleton() { }
+
+        private static T singletonInstance { get; set; }
+
         protected static T instance
         {
             get
             {
-                if (s_instance == null)
+                if (singletonInstance == null)
                 {
-                    var obj = FindObjectOfType<T>();
-                    if (obj != null) s_instance = obj;
+                    var obj = Object.FindObjectOfType<T>();
+                    if (obj != null) singletonInstance = obj;
                 }
 
-                return s_instance;
+                return singletonInstance;
             }
-        }
-
-        private static T s_instance;
-
-        protected virtual void Awake()
-        {
-            if (instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            DontDestroyOnLoad(gameObject);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using PaperTank.UI;
 using PaperTank.Util;
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-
 using UnityEngine;
 
 namespace PaperTank.Game.Enemy
@@ -9,8 +8,6 @@ namespace PaperTank.Game.Enemy
     {
         [SerializeField] private StateBehaviour[] _states;
 
-        private StateBehaviour _current;
-
         public virtual void Start()
         {
             StartCoroutine(RunStates());
@@ -18,23 +15,23 @@ namespace PaperTank.Game.Enemy
 
         private IEnumerator RunStates()
         {
-            _current = _states[0];
+            var current = _states[0];
 
-            yield return StartCoroutine(_current.Execute());
+            yield return StartCoroutine(current.Execute());
 
             while (true)
             {
-                Type nextState = _current.nextState ?? _states[0].GetType();
+                Type nextState = current.nextState ?? _states[0].GetType();
 
                 foreach (var state in _states)
                 {
                     if (state.GetType() != nextState) continue;
 
-                    _current = state;
+                    current = state;
                     break;
                 }
 
-                yield return StartCoroutine(_current.Execute());
+                yield return StartCoroutine(current.Execute());
             }
         }
     }

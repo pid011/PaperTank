@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-
 using PaperTank.Game.BehaviourMovement;
-
 using UnityEngine;
 
 namespace PaperTank.Game.Entity

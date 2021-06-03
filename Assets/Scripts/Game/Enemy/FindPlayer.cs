@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-
 using PaperTank.Game.Enemy.Tank;
-
 using UnityEngine;
 
 namespace PaperTank.Game.Enemy
@@ -15,13 +13,11 @@ namespace PaperTank.Game.Enemy
 
         protected override IEnumerator OnEnter()
         {
-            // Debug.Log("FindPlayer: OnEnter");
             yield break;
         }
 
         protected override IEnumerator OnExecute()
         {
-            // Debug.Log("FindPlayer: OnExecute");
             var wait = new WaitForFixedUpdate();
 
             while (true)
@@ -43,7 +39,6 @@ namespace PaperTank.Game.Enemy
 
         protected override IEnumerator OnExit()
         {
-            // Debug.Log("FindPlayer: OnExit");
             yield break;
         }
 

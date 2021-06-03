@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-
 using DG.Tweening;
-
 using UnityEngine;
 
 namespace PaperTank.Game.Entity

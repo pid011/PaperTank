@@ -140,7 +140,7 @@ dotnet_diagnostic.IDE0055.severity = warning
 
 # Organize using directives
 dotnet_sort_system_directives_first = true
-dotnet_separate_import_directive_groups = true
+dotnet_separate_import_directive_groups = false
 
 # New-line options
 # csharp_new_line_before_members_in_object_initializers = true
@@ -228,10 +228,10 @@ dotnet_naming_symbols.private_internal_fields.applicable_accessibilities = priva
 dotnet_naming_style.camel_case_underscore_style.required_prefix = _
 dotnet_naming_style.camel_case_underscore_style.capitalization = camel_case
 
-# property should be camelCase
-dotnet_naming_rule.camel_case_for_property.severity = suggestion
-dotnet_naming_rule.camel_case_for_property.symbols  = all_property
-dotnet_naming_rule.camel_case_for_property.style    = camel_case_style
-dotnet_naming_symbols.all_property.applicable_kinds = property
-dotnet_naming_symbols.all_property.applicable_accessibilities = *
+# property and event should be camelCase
+dotnet_naming_rule.camel_case_for_property_and_event.severity = suggestion
+dotnet_naming_rule.camel_case_for_property_and_event.symbols  = property_event
+dotnet_naming_rule.camel_case_for_property_and_event.style    = camel_case_style
+dotnet_naming_symbols.property_event.applicable_kinds = property, event
+dotnet_naming_symbols.property_event.applicable_accessibilities = *
 dotnet_naming_style.camel_case_style.capitalization = camel_case

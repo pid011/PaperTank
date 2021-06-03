@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-
 using PaperTank.Game.Behaviour.Tank;
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +8,7 @@ namespace PaperTank.Game.Player
     public class PlayerController : TankBehaviour
     {
         [SerializeField] private float _moveSpeed;
+
         private bool _firePressed;
 
         // move
@@ -30,7 +29,6 @@ namespace PaperTank.Game.Player
 
             transform.Translate(_moveSpeed * Time.deltaTime * new Vector3(_horizontal, 0f, _vertical));
 
-            //RotateSprite();
             RotateTurret();
             DoFire();
         }

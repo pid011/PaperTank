@@ -1,5 +1,4 @@
 ﻿using DG.Tweening;
-
 using UnityEngine;
 
 namespace PaperTank
@@ -9,7 +8,6 @@ namespace PaperTank
         private void Awake()
         {
             DOTween.Init();
-            DOTween.defaultTimeScaleIndependent = false; // use Time.timeScale
         }
     }
 }

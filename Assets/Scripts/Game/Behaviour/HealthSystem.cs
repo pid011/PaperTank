@@ -1,6 +1,4 @@
-﻿
-using PaperTank.Game.Behaviour.Tank;
-
+﻿using PaperTank.Game.Behaviour.Tank;
 using UnityEngine;
 
 namespace PaperTank.Game.Behaviour
@@ -22,10 +20,7 @@ namespace PaperTank.Game.Behaviour
             Debug.Log("Destroied");
             Destroy(gameObject);
 
-            if (gameObject.CompareTag("Player"))
-            {
-                StageManager.GameOver();
-            }
+            if (gameObject.CompareTag("Player")) StageManager.GameOver();
         }
     }
 }

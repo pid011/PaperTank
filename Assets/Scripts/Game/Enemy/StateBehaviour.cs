@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-
 using UnityEngine;
 
 namespace PaperTank.Game.Enemy
@@ -15,7 +14,6 @@ namespace PaperTank.Game.Enemy
         public bool done { get; private set; }
         public Type nextState { get; protected set; }
 
-        private Coroutine _currentCoroutine;
         private State _currentState;
 
         protected abstract IEnumerator OnEnter();
@@ -25,18 +23,19 @@ namespace PaperTank.Game.Enemy
         public IEnumerator Execute()
         {
             done = false;
+            Coroutine current;
 
             _currentState = State.Enter;
-            _currentCoroutine = StartCoroutine(OnEnter());
-            yield return _currentCoroutine;
+            current = StartCoroutine(OnEnter());
+            yield return current;
 
             _currentState = State.Execute;
-            _currentCoroutine = StartCoroutine(OnExecute());
-            yield return _currentCoroutine;
+            current = StartCoroutine(OnExecute());
+            yield return current;
 
             _currentState = State.Exit;
-            _currentCoroutine = StartCoroutine(OnExit());
-            yield return _currentCoroutine;
+            current = StartCoroutine(OnExit());
+            yield return current;
 
             done = true;
         }

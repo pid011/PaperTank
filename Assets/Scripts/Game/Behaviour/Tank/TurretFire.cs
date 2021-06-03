@@ -1,5 +1,4 @@
 ﻿using PaperTank.Game.Entity;
-
 using UnityEngine;
 
 namespace PaperTank.Game.Behaviour.Tank

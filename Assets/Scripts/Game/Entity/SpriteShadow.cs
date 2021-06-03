@@ -8,9 +8,9 @@ namespace PaperTank.Game.Entity
     {
         private void Awake()
         {
-            var renderer = GetComponent<SpriteRenderer>();
-            renderer.receiveShadows = false;
-            renderer.shadowCastingMode = ShadowCastingMode.TwoSided;
+            var spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.receiveShadows = false;
+            spriteRenderer.shadowCastingMode = ShadowCastingMode.TwoSided;
         }
     }
 }

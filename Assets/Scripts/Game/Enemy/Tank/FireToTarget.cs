@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-
 using PaperTank.Game.Behaviour.Tank;
-
 using UnityEngine;
 
 namespace PaperTank.Game.Enemy.Tank
@@ -20,14 +18,11 @@ namespace PaperTank.Game.Enemy.Tank
 
         protected override IEnumerator OnEnter()
         {
-            // Debug.Log("FireToTarget: OnEnter");
             yield break;
         }
 
         protected override IEnumerator OnExecute()
         {
-            // Debug.Log("FireToTarget: OnExecute");
-
             var target = _findPlayer.target;
             if (target == null) yield break;
 
@@ -38,7 +33,6 @@ namespace PaperTank.Game.Enemy.Tank
 
         protected override IEnumerator OnExit()
         {
-            // Debug.Log("FireToTarget: OnExit");
             yield break;
         }
     }

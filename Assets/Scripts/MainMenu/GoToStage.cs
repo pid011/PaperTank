@@ -1,5 +1,4 @@
 ﻿using PaperTank.Util;
-
 using UnityEngine;
 
 namespace PaperTank.MainMenu
