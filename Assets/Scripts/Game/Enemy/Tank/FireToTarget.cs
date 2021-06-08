@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using PaperTank.Game.Behaviour.Tank;
+using PaperTank.Game.Entity;
 using UnityEngine;
 
 namespace PaperTank.Game.Enemy.Tank
@@ -8,6 +9,7 @@ namespace PaperTank.Game.Enemy.Tank
     public class FireToTarget : StateBehaviour
     {
         [SerializeField] private Turret _turret;
+        [SerializeField] private Shell.MovementType _movement;
 
         private FindPlayer _findPlayer;
 
@@ -27,8 +29,10 @@ namespace PaperTank.Game.Enemy.Tank
             if (target == null) yield break;
 
             _turret.rotator.targetPoint = target.position;
-            _turret.weaponSystem.Fire("Enemy");
-            yield return new WaitForSeconds(_turret.weaponSystem.cooldown);
+            _turret.weaponSystem.Fire("Enemy", _movement, target.position + Vector3.down);
+
+            var randomCool = Random.Range(-0.2f, 1f);
+            yield return new WaitForSeconds(_turret.weaponSystem.cooldown + randomCool);
         }
 
         protected override IEnumerator OnExit()

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using PaperTank.Game.Behaviour.Tank;
+using PaperTank.Game.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,7 @@ namespace PaperTank.Game.Player
 {
     public class PlayerController : TankBehaviour
     {
+        [SerializeField] private GameObject _hpBarPrefab;
         [SerializeField] private float _moveSpeed;
 
         private bool _firePressed;
@@ -20,6 +22,12 @@ namespace PaperTank.Game.Player
         // rotate
         private Vector2 _mousePosition;
         private float _vertical;
+
+        protected override void Start()
+        {
+            var hpBar = Instantiate(_hpBarPrefab, GameObject.FindGameObjectWithTag("GameCanvas").transform).GetComponent<HpBar>();
+            hpBar.Init(health, this);
+        }
 
         protected override void Update()
         {

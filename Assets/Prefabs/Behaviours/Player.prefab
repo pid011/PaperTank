@@ -372,6 +372,7 @@ MonoBehaviour:
   _damagePrefab: {fileID: 5285384704343829425, guid: 109034ab85e12934faa5aa4bf5b49d48, type: 3}
   _damageInstantiateOffset: {x: 0, y: 1, z: 0}
   _maxHealth: 120
+  _hpBarPrefab: {fileID: 343767560296118447, guid: f63f01a871468e2418cfaec5eef68683, type: 3}
   _moveSpeed: 5
 --- !u!114 &1751088502933608861
 MonoBehaviour:
@@ -385,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6791500e01ea44a8ac46119e4ff825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _explosionPrefab: {fileID: 1494663731829675572, guid: c8065411fdcbe2f45b07cd5c39605c7f, type: 3}
 --- !u!1 &4622403438446529716
 GameObject:
   m_ObjectHideFlags: 0

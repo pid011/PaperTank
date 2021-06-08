@@ -24,14 +24,15 @@ namespace PaperTank.Game.Behaviour.Tank
         /// </summary>
         /// <param name="tagToDoNotCollide">콜라이더에 부딪히면 안되는 태그 (Player, Enemy, ...)</param>
         /// <returns>발사된 포탄 오브젝트</returns>
-        public Shell Fire(string tagToDoNotCollide)
+        public Shell Fire(string tagToDoNotCollide, Shell.MovementType movement = Shell.MovementType.Straight, Vector3 targetPos = default)
         {
             var initPos = transform.position + (Vector3.up * 0.2f);
             var rotation = Quaternion.Euler(_turret.transform.eulerAngles);
 
             var shell = Instantiate(_shell, initPos, rotation).GetComponent<Shell>();
-            shell.shellMovement = Shell.MovementType.Straight;
+            shell.shellMovement = movement;
             shell.speed = _shellSpeed;
+            shell.endPoint = targetPos;
             shell.tagToDoNotCollide = tagToDoNotCollide;
 
             return shell;

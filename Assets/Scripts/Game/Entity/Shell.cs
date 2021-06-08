@@ -16,7 +16,7 @@ namespace PaperTank.Game.Entity
         public MovementType shellMovement { get; set; }
         public float speed { get; set; }
         public Vector3 endPoint { get; set; }
-        public float parabolaHeight { get; set; } = 1f;
+        public float parabolaHeight { get; set; } = 5f;
         public string tagToDoNotCollide { get; set; }
 
         private Rigidbody _rigidbody;

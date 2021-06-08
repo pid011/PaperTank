@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8149153804421511358}
   - component: {fileID: 4842042737951878307}
   m_Layer: 10
-  m_Name: Enemy Tank
+  m_Name: Enemy Mortar
   m_TagString: Enemy
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8149153804421511359}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 87.17, y: 8.08, z: -255.45}
+  m_LocalPosition: {x: 87.17, y: 9, z: -255.45}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 8149153805565662403}
@@ -78,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dfbf2d2705ac6fe4d89a6859495480c5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45a8507308252144895e85bcf8bca72c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.26, y: 2.63}
+  m_Size: {x: 3.28, y: 3.77}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -128,7 +128,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.25, y: 2.6, z: 1}
+  m_Size: {x: 3.136959, y: 3.7139332, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8149153804421511358
 MonoBehaviour:
@@ -145,7 +145,7 @@ MonoBehaviour:
   _turret: {fileID: 8149153805565662463}
   _damagePrefab: {fileID: 5285384704343829425, guid: 109034ab85e12934faa5aa4bf5b49d48, type: 3}
   _damageInstantiateOffset: {x: 0, y: 1, z: 0}
-  _maxHealth: 70
+  _maxHealth: 50
 --- !u!114 &4842042737951878307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,6 +421,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 64bd78ff-a51f-4624-ac80-faa4375c20d5
     m_ActionName: Player Inputs/Fire Shell[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b327573d-5875-4337-af84-219871f97e38
+    m_ActionName: Player Inputs/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f99c4586-0b7d-40c7-b99d-9ef2ad9b532c
+    m_ActionName: UI Inputs/Back[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player Inputs
@@ -486,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89bcb5ffa165bdd40bf88d5c2e12a344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _findRadius: 20
+  _findRadius: 40
 --- !u!114 &8149153806334336395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,3 +508,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _turret: {fileID: 8149153805565662463}
+  _movement: 1

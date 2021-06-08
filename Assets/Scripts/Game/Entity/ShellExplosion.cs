@@ -1,4 +1,5 @@
-﻿using PaperTank.Game.Behaviour.Tank;
+﻿using DG.Tweening;
+using PaperTank.Game.Behaviour.Tank;
 using UnityEngine;
 
 namespace PaperTank.Game.Entity
@@ -19,6 +20,7 @@ namespace PaperTank.Game.Entity
 
             _sphereCollider.radius = _radius;
             _count = 0;
+            Camera.main.DOShakeRotation(0.1f, strength: 0.2f);
         }
 
         private void Update()

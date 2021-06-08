@@ -37,6 +37,8 @@ namespace PaperTank.Game.BehaviourMovement
 
                 yield return waitForFixedUpdate;
             }
+
+            yield break;
         }
 
         public static IReadOnlyList<Vector3> SimulateParabolaMove(Vector3 start, Vector3 end, float height)

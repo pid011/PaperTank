@@ -13,9 +13,13 @@ namespace PaperTank.Game.UI
             if (!context.started) return;
 
             if (!isOpen)
+            {
                 OpenPanel();
+            }
             else
+            {
                 ClosePanel();
+            }
         }
 
         public void ResumeStage()

@@ -9,11 +9,6 @@ namespace PaperTank.Game.UI
     {
         [SerializeField] private Text _title;
 
-        public void GoToNextStage()
-        {
-            // StageManager.GoToNextStage()
-        }
-
         public void RestartStage()
         {
             SceneLoader.LoadScene(StageManager.currentScene.name);

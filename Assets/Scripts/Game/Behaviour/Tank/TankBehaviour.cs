@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using DG.Tweening;
 using PaperTank.Game.Entity;
 using UnityEngine;
 
@@ -45,7 +46,11 @@ namespace PaperTank.Game.Behaviour.Tank
                 Quaternion.Euler(angle));
             damageObject.GetComponent<Damage>().damageNumber = damage;
 
-            if (_canPlayHitAnimation) StartCoroutine(HitAnimation());
+            if (_canPlayHitAnimation)
+            {
+                StartCoroutine(HitAnimation());
+                Camera.main.DOShakeRotation(0.5f, strength: 0.5f);
+            }
         }
 
         private IEnumerator HitAnimation()
