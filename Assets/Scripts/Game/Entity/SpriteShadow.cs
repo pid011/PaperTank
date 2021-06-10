@@ -3,7 +3,8 @@ using UnityEngine.Rendering;
 
 namespace PaperTank.Game.Entity
 {
-    [RequireComponent(typeof(SpriteRenderer)), ExecuteInEditMode]
+    [ExecuteInEditMode]
+    [RequireComponent(typeof(SpriteRenderer))]
     public class SpriteShadow : MonoBehaviour
     {
         private void Awake()

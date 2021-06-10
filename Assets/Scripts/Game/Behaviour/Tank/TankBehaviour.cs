@@ -49,7 +49,7 @@ namespace PaperTank.Game.Behaviour.Tank
             if (_canPlayHitAnimation)
             {
                 StartCoroutine(HitAnimation());
-                Camera.main.DOShakeRotation(0.5f, strength: 0.5f);
+                Camera.main.DOShakeRotation(0.5f, 0.5f);
             }
         }
 

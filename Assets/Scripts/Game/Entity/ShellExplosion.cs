@@ -20,7 +20,7 @@ namespace PaperTank.Game.Entity
 
             _sphereCollider.radius = _radius;
             _count = 0;
-            Camera.main.DOShakeRotation(0.1f, strength: 0.2f);
+            Camera.main.DOShakeRotation(0.1f, 0.2f);
         }
 
         private void Update()

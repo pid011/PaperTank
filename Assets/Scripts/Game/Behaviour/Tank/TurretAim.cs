@@ -15,10 +15,10 @@ namespace PaperTank.Game.Behaviour.Tank
 
                 var self = transform.position;
 
-                float dy = value.z - self.z;
-                float dx = value.x - self.x;
+                var dy = value.z - self.z;
+                var dx = value.x - self.x;
 
-                float rotateDeg = Mathf.Atan2(dy, -dx) * Mathf.Rad2Deg;
+                var rotateDeg = Mathf.Atan2(dy, -dx) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0f, rotateDeg - 90f, 0f);
             }
         }

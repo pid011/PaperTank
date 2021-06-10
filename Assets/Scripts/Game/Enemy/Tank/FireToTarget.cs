@@ -26,10 +26,12 @@ namespace PaperTank.Game.Enemy.Tank
         protected override IEnumerator OnExecute()
         {
             var target = _findPlayer.target;
-            if (target == null) yield break;
+            if (target is null) yield break;
 
-            _turret.rotator.targetPoint = target.position;
-            _turret.weaponSystem.Fire("Enemy", _movement, target.position + Vector3.down);
+            var targetPos = target.position;
+
+            _turret.rotator.targetPoint = targetPos;
+            _turret.weaponSystem.Fire("Enemy", _movement, targetPos + Vector3.down);
 
             var randomCool = Random.Range(-0.2f, 1f);
             yield return new WaitForSeconds(_turret.weaponSystem.cooldown + randomCool);

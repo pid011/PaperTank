@@ -18,22 +18,24 @@ namespace PaperTank.Game.Enemy
 
         protected override IEnumerator OnExecute()
         {
-            var wait = new WaitForFixedUpdate();
-
             while (true)
             {
-                var colliders = Physics.OverlapSphere(transform.position, _findRadius, 1 << 10); // Behaviour layer
+                var colliders = new Collider[10];
+                var size = Physics.OverlapSphereNonAlloc(transform.position, _findRadius, colliders, 1 << 10);
 
-                foreach (var collideObject in colliders)
+                if (size != 0)
                 {
-                    if (!collideObject.CompareTag("Player")) continue;
+                    foreach (var collideObject in colliders)
+                    {
+                        if (!collideObject.CompareTag("Player")) continue;
 
-                    target = collideObject.transform;
-                    nextState = typeof(FireToTarget);
-                    yield break;
+                        target = collideObject.transform;
+                        nextState = typeof(FireToTarget);
+                        yield break;
+                    }
                 }
 
-                yield return wait;
+                yield return null;
             }
         }
 

@@ -25,7 +25,8 @@ namespace PaperTank.Game.Player
 
         protected override void Start()
         {
-            var hpBar = Instantiate(_hpBarPrefab, GameObject.FindGameObjectWithTag("GameCanvas").transform).GetComponent<HpBar>();
+            var hpBar = Instantiate(_hpBarPrefab, GameObject.FindGameObjectWithTag("GameCanvas").transform)
+                .GetComponent<HpBar>();
             hpBar.Init(health, this);
         }
 

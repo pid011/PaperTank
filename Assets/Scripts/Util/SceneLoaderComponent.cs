@@ -39,11 +39,11 @@ namespace PaperTank.Util
 
             yield return StartCoroutine(Fade(true));
 
-            AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
+            var op = SceneManager.LoadSceneAsync(sceneName);
 
             op.allowSceneActivation = false;
 
-            float timer = 0.0f;
+            var timer = 0.0f;
 
             while (!op.isDone)
             {
@@ -79,7 +79,7 @@ namespace PaperTank.Util
 
         private IEnumerator Fade(bool isFadeIn)
         {
-            float timer = 0f;
+            var timer = 0f;
             while (timer <= 1f)
             {
                 yield return null;

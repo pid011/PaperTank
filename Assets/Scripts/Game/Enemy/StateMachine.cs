@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace PaperTank.Game.Enemy
@@ -21,7 +20,7 @@ namespace PaperTank.Game.Enemy
 
             while (true)
             {
-                Type nextState = current.nextState ?? _states[0].GetType();
+                var nextState = current.nextState ?? _states[0].GetType();
 
                 foreach (var state in _states)
                 {
