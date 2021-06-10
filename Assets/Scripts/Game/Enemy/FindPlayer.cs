@@ -23,16 +23,16 @@ namespace PaperTank.Game.Enemy
                 var colliders = new Collider[10];
                 var size = Physics.OverlapSphereNonAlloc(transform.position, _findRadius, colliders, 1 << 10);
 
-                if (size != 0)
+                foreach (var collideObject in colliders)
                 {
-                    foreach (var collideObject in colliders)
+                    if (collideObject is null || !collideObject.CompareTag("Player"))
                     {
-                        if (!collideObject.CompareTag("Player")) continue;
-
-                        target = collideObject.transform;
-                        nextState = typeof(FireToTarget);
-                        yield break;
+                        continue;
                     }
+
+                    target = collideObject.transform;
+                    nextState = typeof(FireToTarget);
+                    yield break;
                 }
 
                 yield return null;
